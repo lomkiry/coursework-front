@@ -1,10 +1,43 @@
 <header>
   <mat-toolbar color="primary">
-    <span>💰</span>
-    <span class="balance">$15,000</span>
-    <button mat-raised-button color="accent">
+    <div class="btn-links">
+      <button mat-stroked-button 
+        matTooltip="Перейти на главную" 
+        matTooltipPosition="below"
+        routerLink="dashboard">
+        <mat-icon>home</mat-icon>
+        Главная
+      </button>
+
+      <button mat-stroked-button
+        routerLink="history"
+        matTooltip="Перейти в историю" 
+        matTooltipPosition="below">
+        <mat-icon>history</mat-icon>
+        История
+      </button>
+
+      <button mat-stroked-button
+        routerLink="category"
+        matTooltip="Перейти к категориям" 
+        matTooltipPosition="below">
+        <mat-icon>label</mat-icon>
+        Категории
+      </button>
+    </div>
+
+    <button class="btn-add" mat-raised-button color="accent">
       <mat-icon>add</mat-icon>
       Добавить операцию
     </button>
+
+    <mat-chip-row color="accent" selected class="balance-chip">
+      <mat-icon matChipAvatar>account_balance_wallet</mat-icon>
+      <div class="balance-info-chip">
+          <span class="balance-label-chip">Остаток: </span>
+          <span class="balance-value-chip">{{ balance }}</span>
+      </div>
+    </mat-chip-row>
   </mat-toolbar>
 </header>
+<mat-divider></mat-divider>

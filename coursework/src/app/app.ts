@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { Header } from './shared/layout/header/header';
 import { Main } from './shared/layout/main/main';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'app-root',
