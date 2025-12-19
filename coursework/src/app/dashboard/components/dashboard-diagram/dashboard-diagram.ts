@@ -22,7 +22,6 @@ export class DashboardDiagram implements AfterViewInit {
   private chart: Chart | null = null;
 
   ngAfterViewInit() {
-    // Ждем 100мс, чтобы верстка точно "встала"
     setTimeout(() => this.initChart(), 100);
   }
 
@@ -45,7 +44,6 @@ export class DashboardDiagram implements AfterViewInit {
       }
     });
 
-    // Подписываемся на данные
     this.transactionService.transactions$.subscribe(data => {
       this.updateChart(data);
     });

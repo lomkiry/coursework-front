@@ -1,15 +1,14 @@
-/* dashboard-diagram.scss */
 :host {
   display: block;
   height: 100%;
   width: 100%;
-  min-height: 300px; /* Принудительно задаем высоту */
+  min-height: 300px; 
 }
 
 .chart-wrapper {
   display: block;
   position: relative;
-  height: 300px !important; /* Жестко! */
+  height: 300px !important;
   width: 100%;
 }
 
