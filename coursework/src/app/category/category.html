@@ -1,1 +1,17 @@
-<p>category works!</p>
+<div class="category-grid">
+  <mat-card *ngFor="let cat of (categories$ | async)" class="category-card">
+    <mat-card-header>
+      <div mat-card-avatar [style.background-color]="cat.color" class="category-avatar">
+        <mat-icon>{{ cat.icon }}</mat-icon>
+      </div>
+      <mat-card-title>{{ cat.name }}</mat-card-title>
+      <mat-card-subtitle>{{ cat.type === 'income' ? 'Доходы' : 'Расходы' }}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-actions align="end">
+      <button mat-icon-button color="warn" (click)="deleteCategory(cat.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

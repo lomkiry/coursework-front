@@ -1,0 +1,20 @@
+/* dashboard-diagram.scss */
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+  min-height: 300px; /* Принудительно задаем высоту */
+}
+
+.chart-wrapper {
+  display: block;
+  position: relative;
+  height: 300px !important; /* Жестко! */
+  width: 100%;
+}
+
+canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}

@@ -9,3 +9,8 @@
     display: flex;
     gap: 9px;
 }
+
+::ng-deep .mat-mdc-tooltip .mdc-tooltip__surface {
+  white-space: nowrap !important;
+  max-width: none !important;    
+}

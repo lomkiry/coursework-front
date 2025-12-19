@@ -1,0 +1,19 @@
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px); 
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  flex: 1; 
+  gap: 20px;
+}
+
+.card-unit {
+  flex: 1; 
+  display: block; 
+}

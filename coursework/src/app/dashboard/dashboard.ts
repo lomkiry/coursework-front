@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { History } from "./components/history/history";
 import { MatGridListModule } from '@angular/material/grid-list';
+import { DashboardHistory } from './components/dashboard-history/dashboard-history';
+import { DashboardDiagram } from "./components/dashboard-diagram/dashboard-diagram";
+import { DashboardSummary } from './components/dashboard-summary/dashboard-summary';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [History, MatGridListModule],
+  imports: [DashboardHistory, MatGridListModule, DashboardDiagram, DashboardSummary],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

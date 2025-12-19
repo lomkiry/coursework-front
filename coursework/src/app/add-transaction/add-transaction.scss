@@ -1,0 +1,25 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+  min-width: 350px;
+  padding-top: 20px !important; 
+}
+
+.transaction-form {
+  overflow: hidden; 
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-dialog-actions {
+  padding: 16px 0;
+}
+
+.category-icon {
+  margin-right: 8px; 
+  vertical-align: middle; 
+  font-size: 20px;
+}

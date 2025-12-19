@@ -1,0 +1,22 @@
+<app-card-shell title="Сводка за всё время">
+  <div class="summary-container" *ngIf="summary$ | async as s">
+    
+    <div class="summary-item income">
+      <span class="label">Доходы</span>
+      <span class="value">+ {{ formatAmount(s.income) }}</span>
+    </div>
+
+    <div class="summary-item expense">
+      <span class="label">Расходы</span>
+      <span class="value">- {{ formatAmount(s.expense) }}</span>
+    </div>
+
+    <hr>
+
+    <div class="summary-item total" [ngClass]="{'positive': s.total >= 0, 'negative': s.total < 0}">
+      <span class="label">Чистая прибыль</span>
+      <span class="value">{{ formatAmount(s.total) }}</span>
+    </div>
+
+  </div>
+</app-card-shell>

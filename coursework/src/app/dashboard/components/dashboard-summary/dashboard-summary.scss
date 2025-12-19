@@ -1,0 +1,39 @@
+.summary-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+  justify-content: center;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .label {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .value {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
+
+.income .value { color: #2e7d32; }
+.expense .value { color: #d32f2f; }
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 5px 0;
+}
+
+.total {
+  .label { font-weight: bold; color: #333; }
+  &.positive .value { color: #2e7d32; border-bottom: 2px solid #2e7d32; }
+  &.negative .value { color: #d32f2f; border-bottom: 2px solid #d32f2f; }
+}

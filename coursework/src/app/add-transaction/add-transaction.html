@@ -1,0 +1,62 @@
+<form [formGroup]="transactionForm" (ngSubmit)="onSubmit()" class="transaction-form">
+  
+  <h3 mat-dialog-title>Новая операция</h3>
+
+  <mat-dialog-content class="form-container">
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Тип</mat-label>
+      <mat-select formControlName="type" (selectionChange)="onTypeChange()">
+        <mat-option value="expense">Расход</mat-option>
+        <mat-option value="income">Доход</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Сумма</mat-label>
+      <input matInput type="number" formControlName="amount" placeholder="0.00">
+      <span matTextSuffix>₽</span>
+      <mat-error *ngIf="transactionForm.get('amount')?.hasError('positiveAmount')">
+        Сумма должна быть больше нуля
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Категория</mat-label>
+      <mat-select formControlName="categoryId">
+        <mat-option *ngFor="let cat of (filteredCategories$ | async)" [value]="cat.id">
+          <mat-icon [style.color]="cat.color" class="category-icon">
+            {{ cat.icon }}
+          </mat-icon>
+          <span>{{ cat.name }}</span>
+        </mat-option>
+        
+        <mat-option *ngIf="!(filteredCategories$ | async)?.length" disabled>
+          Нет категорий для этого типа
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Выберите дату</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-hint>ДД/ММ/ГГГГ</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Описание</mat-label>
+      <textarea matInput formControlName="description" placeholder="Краткий комментарий..."></textarea>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" [mat-dialog-close]="false">Отмена</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="transactionForm.invalid">
+      <mat-icon>save</mat-icon> Сохранить
+    </button>
+  </mat-dialog-actions>
+
+</form>

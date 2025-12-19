@@ -1,0 +1,17 @@
+.full-width-table {
+  width: 100%;
+  background: transparent !important; 
+  
+  tr {
+    height: 48px;
+  }
+
+  td, th {
+    padding: 0 12px !important;
+  }
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto; 
+}

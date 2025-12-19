@@ -26,16 +26,33 @@
       </button>
     </div>
 
-    <button class="btn-add" mat-raised-button color="accent">
+    <button class="btn-add" 
+      mat-raised-button 
+      color="accent" 
+      [matMenuTriggerFor]="addMenu" 
+      matTooltip="Добавить операцию или категорию" 
+      matTooltipPosition="below">
       <mat-icon>add</mat-icon>
-      Добавить операцию
+      Добавить
     </button>
+
+    <mat-menu #addMenu="matMenu">
+      <button mat-menu-item (click)="openTransactionForm()">
+        <mat-icon color="primary">receipt</mat-icon>
+        <span>Операцию</span>
+      </button>
+      
+      <button mat-menu-item (click)="openCategoryForm()">
+        <mat-icon color="accent">category</mat-icon>
+        <span>Категорию</span>
+      </button>
+    </mat-menu>
 
     <mat-chip-row color="accent" selected class="balance-chip">
       <mat-icon matChipAvatar>account_balance_wallet</mat-icon>
       <div class="balance-info-chip">
           <span class="balance-label-chip">Остаток: </span>
-          <span class="balance-value-chip">{{ balance }}</span>
+          <span class="balance-value-chip">{{ (balance$ | async) }} ₽</span>
       </div>
     </mat-chip-row>
   </mat-toolbar>

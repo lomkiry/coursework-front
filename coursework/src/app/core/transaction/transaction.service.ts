@@ -1,55 +1,57 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Transaction } from '../../model/transaction.interface';
-import { v4 as uuidv4 } from 'uuid';
 
-const STORAGE_KEY = 'Transactions';
-
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class TransactionService {
-  private transactionsSubject = new BehaviorSubject<Transaction[]>([]);
+  private readonly STORAGE_KEY = 'transactions';
+  private transactionsSubject = new BehaviorSubject<Transaction[]>(this.loadFromLocalStorage());
+  
+  public transactions$ = this.transactionsSubject.asObservable();
 
-  public transactions$: Observable<Transaction[]> = this.transactionsSubject.asObservable();
+  constructor() {}
 
-  constructor() {
-    this.loadFromLocalStorage();
+  private loadFromLocalStorage(): Transaction[] {
+    const saved = localStorage.getItem(this.STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
   }
 
-  private loadFromLocalStorage() {
-    const data = localStorage.getItem(STORAGE_KEY);
-    if (data) {
-      const transaction: Transaction[] = JSON.parse(data).map((t: any) => ({
-        ...t,
-        date: new Date(t.date)
-      }));
-      this.transactionsSubject.next(transaction);
-    } else {
-      this.transactionsSubject.next([]);
-    }
+  private saveToLocalStorage(): void {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.transactionsSubject.getValue()));
   }
 
-  private saveToLocalStorage() {
-    const data = this.transactionsSubject.getValue();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }
-
-  addTransaction(transaction: Transaction) {
+  addTransaction(transaction: Transaction): void {
     const current = this.transactionsSubject.getValue();
-    const newId = uuidv4();
-    const updated = [...current, { ...transaction, id: newId }];
+    
+    const newTransaction: Transaction = {
+      ...transaction,
+      id: transaction.id || crypto.randomUUID() 
+    };
+
+    const updated = [newTransaction, ...current];
     this.transactionsSubject.next(updated);
-    this.saveToLocalStorage(); 
+    this.saveToLocalStorage();
   }
 
   getLastFiveTransactions(): Observable<Transaction[]> {
     return this.transactions$.pipe(
-      map(transactions => 
-        transactions
-          .sort((a, b) => b.date.getTime() - a.date.getTime())
-          .slice(0, 5)
+      map(list => [...list]
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 5)
       )
     );
   }
+
+  deleteTransaction(id: string): void {
+    const currentTransactions = this.transactionsSubject.getValue();
+    
+    const updatedTransactions = currentTransactions.filter(t => t.id !== id);
+    
+    this.transactionsSubject.next(updatedTransactions);
+    this.saveToLocalStorage();
+  }
+
+getTransactionsSync() {
+  return this.transactionsSubject.getValue();
+}
 }

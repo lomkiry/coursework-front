@@ -1,0 +1,46 @@
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+  <h2 mat-dialog-title>Создать категорию</h2>
+
+  <mat-dialog-content class="form-container">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Название</mat-label>
+      <input matInput formControlName="name" placeholder="Например, Хобби">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Для чего категория?</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="expense">Расходы</mat-option>
+        <mat-option value="income">Доходы</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="style-row">
+      <div class="color-block">
+        <label>Цвет</label>
+        <input type="color" formControlName="color" class="color-input">
+      </div>
+
+      <mat-form-field appearance="outline" class="icon-field">
+        <mat-label>Иконка</mat-label>
+        <mat-select formControlName="icon">
+          <mat-select-trigger>
+            <mat-icon [style.color]="categoryForm.get('color')?.value">
+              {{categoryForm.get('icon')?.value}}
+            </mat-icon>
+          </mat-select-trigger>
+          <mat-option *ngFor="let icon of availableIcons" [value]="icon">
+            <mat-icon>{{icon}}</mat-icon>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" mat-dialog-close>Отмена</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="categoryForm.invalid">
+      Сохранить
+    </button>
+  </mat-dialog-actions>
+</form>

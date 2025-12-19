@@ -1,5 +1,12 @@
-<mat-grid-list [cols]="4" rowHeight="4:3" gutterSize="20px">
-    <mat-grid-tile>
-        <app-history></app-history>
-    </mat-grid-tile>
-</mat-grid-list>
+<div class="dashboard-wrapper">
+  <div class="row">
+    <app-dashboard-history class="card-unit"></app-dashboard-history>
+
+    <app-dashboard-summary class="card-unit"></app-dashboard-summary>
+  </div>
+
+  <div class="row">
+    <app-dashboard-diagram type="expense" class="card-unit"></app-dashboard-diagram>
+    <app-dashboard-diagram type="income" class="card-unit"></app-dashboard-diagram>
+  </div>
+</div>
