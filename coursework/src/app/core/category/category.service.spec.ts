@@ -33,7 +33,7 @@ describe('CategoryService', () => {
     
     expect(result).toBeDefined();
     expect(result?.name).toBe('Еда');
-    expect(result?.id).toBe('fixed-test-id');
+    expect(result?.id).toBe('test-id');
   });
 
   it('should return undefined', () => {
