@@ -51,7 +51,7 @@ export class TransactionService {
     this.saveToLocalStorage();
   }
 
-getTransactionsSync() {
-  return this.transactionsSubject.getValue();
-}
+  getTransactionsSync() {
+    return this.transactionsSubject.getValue();
+  }
 }

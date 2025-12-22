@@ -25,7 +25,6 @@ export class History implements OnInit {
   displayedColumns: string[] = ['date', 'type', 'category', 'description', 'amount', 'actions'];
 
   ngOnInit() {
-    // Если лимит задан (например 5), вызываем спец. метод, иначе — берем всё
     this.transactions$ = this.limit > 0 
       ? this.transactionService.getLastFiveTransactions() 
       : this.transactionService.transactions$;

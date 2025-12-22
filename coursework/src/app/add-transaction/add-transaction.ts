@@ -62,13 +62,10 @@ export class AddTransaction implements OnInit {
 
   onSubmit() {
     if (this.transactionForm.valid) {
-      // 1. Берем данные из формы
       const rawData = this.transactionForm.value;
       
-      // 2. Вызываем метод сервиса
       this.transactionService.addTransaction(rawData);
 
-      // 3. Закрываем диалог (true сигнализирует, что мы сохранили данные)
       this.dialogRef.close(true);
     }
   }

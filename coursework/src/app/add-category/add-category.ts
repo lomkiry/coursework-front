@@ -38,7 +38,6 @@ export class AddCategory {
     icon: ['label', Validators.required]
   });
 
-  // Популярные иконки для выбора
   availableIcons = [
     'shopping_cart', 'payments', 'directions_bus', 'home', 
     'restaurant', 'local_gas_station', 'fitness_center', 
